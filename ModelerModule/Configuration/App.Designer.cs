@@ -25,16 +25,16 @@ namespace ModelerModule.Configuration {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string MemoryMappedFileName {
+        [global::System.Configuration.DefaultSettingValueAttribute("ModelerSourceImage")]
+        public string SourceImageMemoryMappedFileName {
             get {
-                return ((string)(this["MemoryMappedFileName"]));
+                return ((string)(this["SourceImageMemoryMappedFileName"]));
             }
         }
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("CursorProcessCompleteNofifier")]
         public string Kursor3DReceiverChannel {
             get {
                 return ((string)(this["Kursor3DReceiverChannel"]));
@@ -43,7 +43,7 @@ namespace ModelerModule.Configuration {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("HUBModelerNotifierChannel")]
         public string HUBNotifierChannel {
             get {
                 return ((string)(this["HUBNotifierChannel"]));
@@ -52,10 +52,19 @@ namespace ModelerModule.Configuration {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("PTAMModelerNotifierChannel")]
         public string PTAMReceiverChannel {
             get {
                 return ((string)(this["PTAMReceiverChannel"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("ModelerProcessedImage")]
+        public string ProcessedImageMemoryMappedFileName {
+            get {
+                return ((string)(this["ProcessedImageMemoryMappedFileName"]));
             }
         }
     }

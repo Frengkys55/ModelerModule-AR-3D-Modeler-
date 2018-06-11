@@ -2,17 +2,20 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="ModelerModule.Configuration" GeneratedClassName="App">
   <Profiles />
   <Settings>
-    <Setting Name="MemoryMappedFileName" Type="System.String" Scope="Application">
-      <Value Profile="(Default)" />
+    <Setting Name="SourceImageMemoryMappedFileName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">ModelerSourceImage</Value>
     </Setting>
     <Setting Name="Kursor3DReceiverChannel" Type="System.String" Scope="Application">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">CursorProcessCompleteNofifier</Value>
     </Setting>
     <Setting Name="HUBNotifierChannel" Type="System.String" Scope="Application">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">HUBModelerNotifierChannel</Value>
     </Setting>
     <Setting Name="PTAMReceiverChannel" Type="System.String" Scope="Application">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">PTAMModelerNotifierChannel</Value>
+    </Setting>
+    <Setting Name="ProcessedImageMemoryMappedFileName" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">ModelerProcessedImage</Value>
     </Setting>
   </Settings>
 </SettingsFile>
