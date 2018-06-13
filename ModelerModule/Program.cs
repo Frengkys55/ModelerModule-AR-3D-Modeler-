@@ -21,7 +21,6 @@ namespace ModelerModule
         static Configuration.App savedInformations = new Configuration.App();
         static Image<Bgra, byte> receivedImage;
 
-
         #region Cursor info
         static int cursorXPosition = 0;
         static int cursorYPosition = 0;
@@ -247,5 +246,10 @@ namespace ModelerModule
         }
 
         #endregion Threaded process
+
+        static void DummyData()
+        {
+
+        }
     }
 }
