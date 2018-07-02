@@ -12,6 +12,7 @@ using Emgu.CV;
 using Emgu.CV.Structure;
 using System.IO;
 using System.IO.Pipes;
+using System.Diagnostics;
 
 namespace ModelerModule
 {
@@ -19,7 +20,7 @@ namespace ModelerModule
     {
         #region Modeler info
         static Configuration.App savedInformations = new Configuration.App();
-        static Image<Bgra, byte> receivedImage;
+        
 
         #region Cursor info
         static int cursorXPosition = 0;
@@ -42,6 +43,12 @@ namespace ModelerModule
         #endregion Orientation
         #endregion Pose info
 
+        #region Images
+        static Image<Bgra, byte> receivedImage;
+        static Image<Bgra, byte> processedImage;
+
+        #endregion Images
+
         #region Inter-process communication objects
         #region Named pipe info
         static string HUBReceiverNotifier       = string.Empty;
@@ -59,17 +66,28 @@ namespace ModelerModule
         static string mmfSourceFileName = string.Empty;
         static string mmfProcessedFileName = string.Empty;
 
-        static MMF imageFile = null;
+        static MMF receivedImageFile = null;
+        static MMF sentImageFile = null;
         #endregion Memory-mapped file info
 
         #endregion Inter-process communication objects
 
         #region Performance info
+        #region Performance data
         static float overallPerformance;
         static float sendResultPerformance;
         static float receiverPerformance;
         static float sceneConstructionPerformance;
         static float conversionPerformance;
+        #endregion Performance data
+        #region Performance watcher
+        Stopwatch overallPerformanceWatcher;
+        Stopwatch sendResultPerformanceWatcher;
+        Stopwatch receiverPerformanceWatcher;
+        Stopwatch sceneConstructionPerformanceWatcher;
+        Stopwatch conversionPerformanceWatcher;
+        #endregion Performance watcher
+
         #endregion Performance info
         #endregion Modeler info
 
@@ -239,10 +257,17 @@ namespace ModelerModule
         static void ImageLoader()
         {
             byte[] receivedImage;
-            imageFile = new MMF();
-            imageFile.OpenExisting(mmfSourceFileName);
-            receivedImage = Convert.FromBase64String(imageFile.ReadContent(MMF.DataType.DataString));
+            receivedImageFile = new MMF();
+            receivedImageFile.OpenExisting(mmfSourceFileName);
+            receivedImage = Convert.FromBase64String(receivedImageFile.ReadContent(MMF.DataType.DataString));
             Program.receivedImage = new Image<Bgra, byte>(new Bitmap(new MemoryStream(receivedImage)));
+        }
+
+        static void ImageWriter()
+        {
+            sentImageFile = new MMF();
+            sentImageFile.CreateNewFile(mmfProcessedFileName, 10000000);
+            sentImageFile.AddInformation(Convert.ToBase64String(processedImage.Bytes));
         }
 
         #endregion Threaded process
